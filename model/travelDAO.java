@@ -70,4 +70,110 @@ public class travelDAO {
 	      return list;
 	   }
 
+//	public ArrayList<memberVO> idCheck(memberVO vo) {
+//		getConnetct();
+//		String SQL = "select * from trmember where id=?";
+//		
+//		ArrayList<memberVO> list = new ArrayList<memberVO>();
+//		try {
+//	         ps = conn.prepareStatement(SQL);
+//	         ps.setString(1, vo.getId());
+//	         rs = ps.executeQuery();
+//	         while (rs.next()) {
+//	            
+//	            
+//	            String id = rs.getString("id");
+//	            memberVO vo1 = new memberVO(id);
+//	            
+//	            list.add(vo1);
+//	            
+//	         }
+//	      } catch (Exception e) {
+//	         e.printStackTrace();
+//	      } finally {
+//	         dbClose();
+//	      }
+//		return list;
+//	}
+
+	public boolean idCheck(memberVO vo) {
+		getConnetct();
+		String SQL = "select * from trmember where id=?";
+		boolean tf = false;
+		
+		try {
+	         ps = conn.prepareStatement(SQL);
+	         ps.setString(1, vo.getId());
+	         rs = ps.executeQuery();
+	         if (rs.next()) {
+	            tf =  true;
+	           
+
+	           
+	            
+	         }else {
+	        	 tf =  false;
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         dbClose();
+	      }
+		return tf;
+	}
+
+	public memberVO ContentList(String id) {
+		getConnetct();
+		String SQL = "select content from board where id=?";
+		boolean tf = false;
+		
+		try {
+	         ps = conn.prepareStatement(SQL);
+	         ps.setString(1, id);
+	         rs = ps.executeQuery();
+	         if (rs.next()) {
+	            tf =  true;
+	           
+
+	           
+	            
+	         }else {
+	        	 tf =  false;
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         dbClose();
+	      }
+		return null;
+	}
+
+	public int memberInsert(memberVO vo) {
+		getConnetct();
+		String SQL = "insert into trmember values( mem_seq.nextval, ?, ?, ?, ?,sysdate,?)";
+		int cnt = 0;
+		try {
+	         ps = conn.prepareStatement(SQL);
+	         ps.setString(1, vo.getId());
+	         ps.setString(2, vo.getPass());
+	         ps.setString(3, vo.getBirth());
+	         ps.setString(4, vo.getTel());
+	         ps.setString(5, vo.getName());
+	         
+	         System.out.println(vo.getId());
+	         System.out.println(vo.getPass());
+	         System.out.println(vo.getBirth());
+	         System.out.println(vo.getTel());
+	         System.out.println(vo.getName());
+	         cnt = ps.executeUpdate();
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         dbClose();
+	      }
+		return cnt;
+	}
+
+
 }

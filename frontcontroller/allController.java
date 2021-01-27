@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import travel1.controller.BoardListController;
+import travel1.controller.ContentController;
 import travel1.controller.Controller;
+import travel1.controller.MemberInsertController;
+import travel1.controller.MemberInsertController2;
 import travel1.model.travelDAO;
 
 
@@ -36,7 +39,29 @@ public class allController extends HttpServlet {
 
 	         RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 	         rd.forward(request, response);
-	      }else {
+			} else if (command.equals("/MemberInsert.do")) {
+
+				controller = new MemberInsertController();
+				nextPage = controller.requestHandler(request, response);
+				response.sendRedirect(nextPage);
+
+			}else if (command.equals("/MemberInsert2.do")) {
+
+				controller = new MemberInsertController2();
+				nextPage = controller.requestHandler(request, response);
+				response.sendRedirect(nextPage);
+
+			}else if(command.equals("/Content.do")) {
+		         controller = new ContentController();
+		         nextPage=controller.requestHandler(request, response) ;
+
+		         RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+		         rd.forward(request, response);
+				}
+	      
+	      
+	      
+	      else {
 	    	  
 	      } 
 //	      else if (command.equals("/MemberInsert.do")) {
