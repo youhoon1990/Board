@@ -59,6 +59,7 @@ public class IdCheck extends HttpServlet {
 	      JsonObject jsonObj = new JsonObject();
 	      jsonObj.addProperty("boolean", tf);
 	      String json = gson.toJson(jsonObj);
+	      
 //	      jsonObj.addProperty("str", "j-query");
 //	      System.out.println(jsonObj.toString());
 //

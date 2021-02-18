@@ -10,60 +10,92 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import travel1.controller.BoardListController;
+import travel1.controller.CommentController;
 import travel1.controller.ContentController;
 import travel1.controller.Controller;
+import travel1.controller.LogOutController;
+import travel1.controller.LoginController;
+import travel1.controller.LoginController2;
 import travel1.controller.MemberInsertController;
 import travel1.controller.MemberInsertController2;
 import travel1.model.travelDAO;
-
 
 @WebServlet("*.do")
 public class allController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String reqPath = request.getRequestURI();
-	      // System.out.println(reqPath);
-	      String contextPath = request.getContextPath();
-	      // System.out.println(contextPath);
-	      String command = reqPath.substring(contextPath.length());
-	      // client의 요청(command) command 패턴?이 여기서 나옴
-	      System.out.println(command);
-	      // 요청에 따른 처리(분기 작업이라고 부름)
-	      Controller controller =null;
-	      String nextPage = null;
-	      travelDAO dao = new travelDAO();
-	      if (command.equals("/Board.do")) {
-	         controller = new BoardListController();
-	         nextPage=controller.requestHandler(request, response) ;
+		// System.out.println(reqPath);
+		String contextPath = request.getContextPath();
+		// System.out.println(contextPath);
+		String command = reqPath.substring(contextPath.length());
+		// client의 요청(command) command 패턴?이 여기서 나옴
+		System.out.println(command);
+		// 요청에 따른 처리(분기 작업이라고 부름)
+		Controller controller = null;
+		String nextPage = null;
+		travelDAO dao = new travelDAO();
+		if (command.equals("/Board.do")) {
+			controller = new BoardListController();
+			nextPage = controller.requestHandler(request, response);
 
-	         RequestDispatcher rd = request.getRequestDispatcher(nextPage);
-	         rd.forward(request, response);
-			} else if (command.equals("/MemberInsert.do")) {
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
+		} else if (command.equals("/MemberInsert.do")) {
 
-				controller = new MemberInsertController();
-				nextPage = controller.requestHandler(request, response);
-				response.sendRedirect(nextPage);
+			controller = new MemberInsertController();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
 
-			}else if (command.equals("/MemberInsert2.do")) {
+		} else if (command.equals("/MemberInsert2.do")) {
 
-				controller = new MemberInsertController2();
-				nextPage = controller.requestHandler(request, response);
-				response.sendRedirect(nextPage);
+			controller = new MemberInsertController2();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
 
-			}else if(command.equals("/Content.do")) {
-		         controller = new ContentController();
-		         nextPage=controller.requestHandler(request, response) ;
+		} else if (command.equals("/Content.do")) {
+			controller = new ContentController();
+			nextPage = controller.requestHandler(request, response);
 
-		         RequestDispatcher rd = request.getRequestDispatcher(nextPage);
-		         rd.forward(request, response);
-				}
-	      
-	      
-	      
-	      else {
-	    	  
-	      } 
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
+		}else if (command.equals("/Login.do")) {
+
+			controller = new LoginController();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
+
+		}else if (command.equals("/Login2.do")) {
+
+			controller = new LoginController2();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
+
+		}else if (command.equals("/LogOut.do")) {
+
+			controller = new LogOutController();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
+
+		}else if (command.equals("/Write.do")) {
+
+			controller = new LogOutController();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
+
+		}else if (command.equals("/Comment.do")) {
+			//댓글작성?
+			controller = new CommentController();
+			nextPage = controller.requestHandler(request, response);
+			response.sendRedirect(nextPage);
+
+		}
+
+		else {
+
+		}
 //	      else if (command.equals("/MemberInsert.do")) {
 //
 //	         controller= new MemberInsertController();
@@ -100,7 +132,7 @@ public class allController extends HttpServlet {
 //	         response.sendRedirect(nextPage);
 //	         
 //	      }
-	         
-	   }
 
 	}
+
+}

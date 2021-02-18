@@ -77,7 +77,7 @@
             
             </div >
                 <div class="content">
-                    <form action="Login.do" method="post" >
+                    <form action="/travel1/Login2.do" method="post" >
                     <div>
                         <input type="text" name="id" >
                     </div>

@@ -17,13 +17,13 @@ body {
 }
 
 .board {
-	border: red 2px solid;
+	border: #F2F2F2 2px solid;
 }
 
 .content {
-	border: blue 2px solid;
+	border: #F2F2F2 2px solid;
 	width: 100%;
-	height: 800px;
+	height: 500px;
 }
 
 .comment {
@@ -31,6 +31,20 @@ body {
 	width: 100%;
 	height: 100px;
 }
+.comment12 {
+		border : green;
+}
+.modify {
+		position: relative;
+		left : 95%;
+		
+		
+}
+.list-btn{
+		height: 80px;
+}
+
+
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
@@ -49,8 +63,9 @@ body {
     //맨처음 배열선언 한 뒤  ajax에서 받아온 것 배열에 담아줄 것 ,  글 등록시 배열초기화하고 다시 띄워줄것, 가장 마지막 페이지 띄워줄것
     
     $(function(){
-   $('a').on("click",function(e){
+   $('.pageAjax').on("click",function(e){
        e.preventDefault();
+       alert("a태그 막음");
    });
 });
     
@@ -282,6 +297,8 @@ body {
     			alert('요청실패..');
     		}
     		
+    		
+    		
     	});
     	//history.pushState(null, null, '/page='+pageNum);
     }
@@ -341,17 +358,32 @@ body {
 		<div class="row">
 
 			<div class="col-md-12 board">
+			<div class="list-btn">
+				<c:if test="${pre!=0 }">
+				<a href="Content.do?num=${pre }" class="btn btn-primary">이전글</a>				
+							
+				</c:if>
+				
+				<a href="Board.do" class="btn btn-primary">목록</a>
+				<c:if test="${pre!=0 }">
+				<a href="Content.do?num=${pre }" class="btn btn-primary">다음글</a>				
+							
+				</c:if>
+				</div>
 				<div class="title">
-					<h1>${vo.title }</h1>
-					<h3 id="cnum">${vo.num }조회수:${vo.click } 추천 : ${vo.rec }</h3>
+					<div class="subject"><h1>${vo.title }</h1></div>
+					<h3 id="cnum">번호 : ${vo.num }	조회수 : ${vo.click } 	추천 : ${vo.rec }</h3>
 				</div>
 				<div class="content">
 					<p>${vo.content }</p>
 
 				</div>
+				<div >
+				
+				<%--
 				<button type="button"
 					onclick="location.href='http://localhost:8081/travel/edit.do'"
-					name="수정하기">수정하기</button>
+					name="수정하기" class = "modify">    </button></div>   --%>
 				<%-- 
                 <c:forEach var="vo1" items="${vo1 }">
                 <div class="comment">
@@ -360,14 +392,17 @@ body {
                 </div>
                 </c:forEach>  여긴 동기형 방식으로 댓글 read--%>
 				<form action="/travel1/Comment.do?num=${vo.num }" method="POST">
-					<textarea name="comment" id="" cols="140" rows="10"></textarea>
-					<input type="submit" value="등록">
+					<textarea name="comment" id="" style="width:100%;" rows="8"
+					onclick="if(this.value=='타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률의 제재를 받을 수 있습니다.')
+					{this.value=''}">타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률의 제재를 받을 수 있습니다.</textarea>
+
+					<div ><input type="submit" value="등록" class = "btn btn-primary modify"></div>
 					
 					<div id="ajax" class="comment12"></div>
 				</form>
 			</div>
 		</div>
-		<span id="commentStart">끝</span>
+		<span id="commentStart">  </span>
 	</div>
 </body>
 

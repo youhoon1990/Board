@@ -89,7 +89,7 @@
     <!-- 공통 -->
     <!-- 공통 -->
     <div class="container">
-        <form action="Report.do" method="POST">
+        <form action="/travel1/upload.do" method="POST" enctype="multipart/form-data">
             <div class="row">
 
                 <div class="col-md-12 board">
@@ -108,6 +108,12 @@
                             <textarea name="content" id="" cols="140" rows="28"></textarea>
                         </div>
                         <div>
+                       		<%--<form action="upload.do" method="post" enctype="multipart/form-data">
+                       			<input type = "file" name = "uploadFile"><br>
+                       			<input type="submit" value="전송">
+                       			
+                       		</form> --%>
+                       		<br>
                            <input type="submit" value="작성하기">
                         </div>
                     </div>
@@ -115,6 +121,8 @@
                     <button type="button" onclick="location.href='http://localhost:8081/travel/Board.do'"
                         name="수정하기">수정하기</button>
                 </div>
+                
+                
             </div>
         </form>
     </div>
