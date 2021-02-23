@@ -29,6 +29,7 @@ public class Comment extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
 		PrintWriter out = response.getWriter();
 
 		String num = request.getParameter("num");
@@ -44,7 +45,7 @@ public class Comment extends HttpServlet {
 
 		Gson gson = new Gson();
 		String list1 = gson.toJson(vo1);
-		System.out.println(list1);
+		System.out.println("들어오니...."+list1);
 		out.print(list1);
 	}
 

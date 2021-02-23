@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import travel1.controller.BoardDeleteController;
 import travel1.controller.BoardListController;
 import travel1.controller.CommentController;
 import travel1.controller.ContentController;
@@ -16,8 +17,10 @@ import travel1.controller.Controller;
 import travel1.controller.LogOutController;
 import travel1.controller.LoginController;
 import travel1.controller.LoginController2;
+import travel1.controller.ManageController;
 import travel1.controller.MemberInsertController;
 import travel1.controller.MemberInsertController2;
+import travel1.controller.SearchController;
 import travel1.model.travelDAO;
 
 @WebServlet("*.do")
@@ -91,6 +94,24 @@ public class allController extends HttpServlet {
 			nextPage = controller.requestHandler(request, response);
 			response.sendRedirect(nextPage);
 
+		}else if (command.equals("/Search.do")) {
+			controller = new SearchController();
+			nextPage = controller.requestHandler(request, response);
+
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
+		}else if (command.equals("/Manage.do")) {
+			controller = new ManageController();
+			nextPage = controller.requestHandler(request, response);
+
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
+		}else if (command.equals("/Delete.do")) {
+			controller = new BoardDeleteController();
+			nextPage = controller.requestHandler(request, response);
+
+			RequestDispatcher rd = request.getRequestDispatcher(nextPage);
+			rd.forward(request, response);
 		}
 
 		else {

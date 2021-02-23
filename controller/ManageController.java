@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import travel1.model.boardVO;
-import travel1.model.memberVO;
 import travel1.model.travelDAO;
 
-public class BoardListController implements Controller {
+public class ManageController implements Controller{
 	@Override
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,7 +58,7 @@ public class BoardListController implements Controller {
 
 		travelDAO dao = new travelDAO();
 		ArrayList<boardVO> vo = new ArrayList<boardVO>();
-//일반 게시글 출력과 검색결과별 출력
+
 		if (category.equals("zero")) {
 			vo = dao.boardList();
 			System.out.println("참(null일때)");
@@ -108,7 +107,7 @@ public class BoardListController implements Controller {
 		// request.setAttribute("vo1", vo); // was에 잇는 data 저장
 
 		request.setAttribute("vo", vo1); //
-		return "member/BoardList.jsp";
+		return "member/Manage.jsp";
 	}
 
 }
