@@ -3,8 +3,10 @@
 
 2.26일 완료
 
-=================================
-URL :  smhousegrid.com:8083/travel1/Board.do
+주소
+===================================
+
+smhousegrid.com:8083/travel1/Board.do
 
 
 개발환경
