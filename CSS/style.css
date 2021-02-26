@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 150px;
+}
+
+/* 
+///////////////  컨텐츠  ////////////
+*/
+
+.board {
+	border: #F2F2F2 2px solid;
+}
+
+.content {
+	border: #F2F2F2 2px solid;
+	width: 100%;
+	height: 500px;
+}
+
+.comment {
+	border: green 2px solid;
+	width: 100%;
+	height: 100px;
+}
+
+.comment12 {
+	border: green;
+}
+
+.modify {
+	position: relative;
+	left: 95%;
+}
+
+.list-btn {
+	height: 80px;
+}
+
+.rightbtn{
+	position: relative;
+	left: 85%;
+}.rightbtn2{
+	position: relative;
+	left: 79%;
+	bottom : 38px;
+}
+
+
+/* 
+///////////////  게시판  ////////////
+*/
+
+
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg .tg-cjtp {
+	background-color: #ecf4ff;
+	border-color: inherit;
+	text-align: center;
+	vertical-align: top
+}
+
+.tg .tg-0pky {
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top
+}
+
+
+/*======= 글쓰기 폼 ==========*/
+
+        #title-input {
+            width: 800px;
+        }
+
+        .textbox {
+            border: #F2F2F2 2px solid;
+            position: relative;
+            left: 10px;
+
+        }
+        
+        #submitbtn{
+        	position: relative;
+        	left : 90%;
+        	bottom : -10%;
+        }

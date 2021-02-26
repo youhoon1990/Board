@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/travel1/CSS/style.css" rel="stylesheet">
     <title>Document</title>
-
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -49,12 +49,12 @@
                 <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                 <c:when test="${sessionScope.id eq null }">
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Login.do">로그인</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/travel1/MemberInsert.do">회원가입</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/travel1/Login.do">로그인</a></li>
                 </c:when>
                 <c:otherwise>
                 	<li class="nav-item"><a class="nav-link" href="#">내 정보</a></li>
-                    <li class="nav-item"><a class="nav-link" href="LogOut.do">로그아웃</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/travel1/LogOut.do">로그아웃</a></li>
                 </c:otherwise>
                 </c:choose>  
                 </ul>
@@ -62,40 +62,49 @@
         </div>
     </div>
     <!-- 공통 -->
-    <!-- 공통 -->
+    
     <div class="container">
-        <form action="/travel1/upload.do" method="POST" enctype="multipart/form-data">
+        
             <div class="row">
-
+            <form action="/travel1/WriteFile.do" method="POST">
                 <div class="col-md-12 board">
                     <div>
-                        <h1>제목</h1>
-                        <input type="text" name="title" id="title-input" placeholder="제목">
+                        
+                        
                     </div>
                     
                     <div class="content">
-                        <p>내용</p>
+                    <input type="text" name="title" id="title-input" placeholder="제목">
+                        <p>${vo.content }</p>
                         <div class="textbox">
                             <textarea name="content" id="" cols="140" rows="15"></textarea>
                         </div>
-                        <div>
-                       		<%--<form action="upload.do" method="post" enctype="multipart/form-data">
-                       			<input type = "file" name = "uploadFile"><br>
-                       			<input type="submit" value="전송">
-                       			
-                       		</form> --%>
-                       		<br>
-                           <input type="submit" value="작성하기">
-                        </div>
+                        
                     </div>
+                    
 
-                    <button type="button" onclick="location.href='http://localhost:8081/travel/Board.do'"
-                        name="수정하기">수정하기</button>
+                    <%-- <button type="button" onclick="location.href='http://localhost:8081/travel/Board.do'"
+                        name="수정하기">수정하기</button>  --%>
+                        
+                         <input type="submit" value="작성" id="submitbtn">
+                </form>
+                <div>
+                <c:if test="${sessionScope.id eq 'admin' }">
+								
+								<form action="/travel1/upload.do" target="param" method="post" enctype="multipart/form-data">
+                       			
+                       			<span><input type = "file" name = "uploadFile"></span>
+                       			<span><input type="submit" value="파일전송하기"></span>
+                       		</form>
+							<iframe id="if" name="param" style="visibility:hidden;display:none"></iframe>	
+									
+								</c:if> 
+				</div>
                 </div>
-                
+               
                 
             </div>
-        </form>
+        
     </div>
 </body>
 

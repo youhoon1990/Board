@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/style.css" rel="stylesheet">
     <title>Document</title>
+    
     <style>
         body {
             padding-top: 150px;
@@ -14,14 +16,16 @@
         }
 
         .board{
-            border: red 2px solid;
+            border: #F2F2F2 2px solid;
         }
         .content{
-            border: blue 2px solid;
+            border: #F2F2F2 2px solid;
             width: 100%;
-            height: 800px;
+            height: 500px;
         }
     </style>
+    
+     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -56,7 +60,7 @@
                 <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                 <c:when test="${sessionScope.id eq null }">
-                    <li class="nav-item"><a class="nav-link" href="Board.do">홈으로</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/travel1/Board.do">홈으로</a></li>
                     
                 </c:when>
                 <c:otherwise>
@@ -73,10 +77,11 @@
 
             <div class="col-md-12 board">
             <div >
-            <h1>로그인창 입니다.</h1>
+            
             
             </div >
                 <div class="content">
+                <h1>로그인창 입니다.</h1>
                     <form action="/travel1/Login2.do" method="post" >
                     <div>
                         <input type="text" name="id" >

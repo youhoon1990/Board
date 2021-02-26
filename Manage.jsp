@@ -36,7 +36,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="CSS/style.css" rel="stylesheet">
 <title>Document</title>
+<style>
 
+</style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
@@ -44,6 +46,23 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	
+	</script>
+
+
+
+<script>
+  function selectAll(selectAll)  {
+  const checkboxes 
+       = document.getElementsByName('list');
+  
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked;
+  })
+}
+
+
+</script>
 </head>
 
 
@@ -103,12 +122,16 @@
 				<div class="jumbotron">
 					<h1>자유 게시판</h1>
 					<p>자유롭게 의견을 나누는 공간입니다.</p>
-					<a class="btn btn-primary btn-lg" href="Write2.do">글 작성하기</a>
+					<a class="btn btn-primary btn-lg" href="Write.do">글 작성하기</a>
 				</div>
 				<table class="tg">
 					<thead>
 						<tr>
-							<th class="tg-cjtp" width="50px">번호</th>
+							
+							<th class="tg-cjtp" width="70px"><input type='checkbox'
+  name='list' 
+  value='selectall'
+  onclick='selectAll(this)'/>번호</th>
 							<th class="tg-cjtp">&nbsp; 제목 &nbsp;</th>
 							<th class="tg-cjtp" width="70px">글쓴이</th>
 							<th class="tg-cjtp" width="50">등록일</th>
@@ -116,11 +139,12 @@
 							<th class="tg-cjtp" width="40">추천</th>
 						</tr>
 					</thead>
+					<form action="/travel1/Delete.do">
 					<tbody>
 						<%-- <c:forEach var="vo" items="${vo }" begin="0" end="1" step="1">  --%>
 						<c:forEach var="vo" items="${vo }">
 							<tr>
-								<td class="tg-0pky">${vo.num }</td>
+								<td class="tg-0pky"><input type="checkbox" name="list" value="${vo.num }"/>  ${vo.num }</td>
 								<td class="tg-0pky"><a href="Content.do?num=${vo.num }">${vo.title }</a></td>
 								<td class="tg-0pky">${vo.name }</td>
 								<td class="tg-0pky">${vo.day }</td>
@@ -128,6 +152,10 @@
 								<td class="tg-0pky">${vo.rec }</td>
 							</tr>
 						</c:forEach>
+						<input
+								type="submit" value="삭제하기">
+						</form>
+						<%--아래 form은 페이지 전달, 그러나 submit에 formaction 으로 처리 가능 --%>
 						<form action="/travel1/Board.do">
 						<tr>
 							<td colspan="6">
@@ -265,7 +293,7 @@
 								</c:if>
 								
 								<c:if test="${sessionScope.id eq 'admin' }">
-								<a class="btn btn-primary" href="Manage.do">게시글 관리</a>
+								<a class="btn btn-primary" href="Write.do">게시글 관리</a>
 								
 								
 									

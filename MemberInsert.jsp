@@ -6,9 +6,25 @@
 
 <head>
 <meta charset="UTF-8">
+
+<link href="/travel1/CSS/style.css" rel="stylesheet">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+function btnActive()  {
+	  const target = document.getElementById('target_btn');
+	  target.disabled = false;
+	}
+
+	function btnDisabled()  {
+	  const target = document.getElementById('target_btn');
+	  target.disabled = true;
+	}
+</script>
 <script type="text/javascript">
+
+
+
 	$(function() {
 		//버튼을 클릭했을 때 동작하는 이벤트
 		$('#btn').on('click', function() {
@@ -16,7 +32,7 @@
 			
 			$.ajax({
 				//1. 서버의 url작성
-				url : 'http://localhost:8081/travel1/IdCheck?id='+$('#input').val(),
+				url : 'http://localhost:8083/travel1/IdCheck?id='+$('#input').val(),
 				//url : 'AjaxServlet',
 				dataType : 'json',
 				/* data : 'id='+$('#input').val(), */
@@ -57,65 +73,90 @@
 
 	});
 </script>
+<script type="text/javascript">
+
+	$(function() {
+		//버튼을 클릭했을 때 동작하는 이벤트
+		$('#confirm').on('click', function() {
+			//ajax구조 작성해보자
+			
+			$.ajax({
+				//1. 서버의 url작성
+				url : 'http://localhost:8083/travel1/send?email='+$('#input2').val(),
+				
+				dataType : 'json',
+				data : {"birth": $('#bt').val()},
+
+				success : function(result) {
+					
+				
+				},
+				error : function() {
+										
+				}
+			});//ajax
+
+		});//func
+
+	});
+	
+	
+	$(function() {
+		//버튼을 클릭했을 때 동작하는 이벤트
+		$('#check').on('click', function() {
+			//ajax구조 작성해보자
+			
+			$.ajax({
+				//1. 서버의 url작성
+				url : 'http://localhost:8083/travel1/confirm?code='+$('#input3').val(),
+				data : {"birth": $('#bt').val()},
+			        
+				dataType : 'json',
+				
+
+				success : function(result) {
+					
+					console.log($('#input2').val());
+					alert('요청성공!');
+					console.log(result);
+					console.log("아래 뭐지?")
+					//$('#data2').html(result.boolean);
+					console.log(result.boolean);
+					//let tf = result.boolean.toString();
+					let tf = result.boolean;
+					let tff = result.boolean.toString();  //string으로 바꿔줌
+					console.log(typeof tf);  // 변수의 타입명
+					
+					
+					if(tf==true){
+						var result = document.getElementById('data2');
+						//var input = document.getElementByID('input');
+						//console.log(input.value);
+						result.innerHTML = "인증 성공.";
+						btnActive();
+						
+					}else if(tf!=true){
+						var result = document.getElementById('data2');
+						result.innerHTML = "인증 실패. 코드를 확인해주세요";
+						btnDisabled();
+						
+					}
+					
+
+				},
+				error : function() {
+					alert('요청실패..');
+					
+				}
+			});//ajax
+
+		});//func
+
+	});
+</script>
 
 <style>
-body {
-	padding-top: 150px;
-	/* border: red solid 2px; */
-}
 
-.board {
-	border: red 2px solid;
-}
-
-.content {
-	border: blue 2px solid;
-	width: 100%;
-	height: 800px;
-}
-
-#title-input {
-	width: 800px;
-}
-
-.textbox {
-	border: yellow 2px solid;
-	position: relative;
-	left: 10px;
-}
-
-.tg {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-.tg td {
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	overflow: hidden;
-	padding: 10px 5px;
-	word-break: normal;
-}
-
-.tg th {
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	overflow: hidden;
-	padding: 10px 5px;
-	word-break: normal;
-}
-
-.tg .tg-0lax {
-	text-align: left;
-	vertical-align: top
-}
 </style>
 
 <link rel="stylesheet"
@@ -156,12 +197,12 @@ body {
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${sessionScope.id eq null }">
-							<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-							<li class="nav-item"><a class="nav-link" href="Login.do">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/travel1/MemberInsert.do">회원가입</a></li>
+							<li class="nav-item"><a class="nav-link" href="/travel1/Login.do">로그인</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="#">내 정보</a></li>
-							<li class="nav-item"><a class="nav-link" href="LogOut.do">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link" href="/travel1/LogOut.do">로그아웃</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -173,24 +214,34 @@ body {
 		<div class="row">
 
 			<div class="col-md-12 board">
-				<div>
-					<h1>제목</h1>
-					<input type="text" name="" id="title-input" placeholder="제목">
-				</div>
-				<div>
-					<a href="http://localhost:8081/travel/Board.do">목록</a> <a
-						href="http://localhost:8081/travel/Content.do?num=1">이전글</a> <a
-						href="">다음글</a>
-				</div>
+				
+				
 				<div class="content">
-					<p>${vo.content }</p>
+						<div class="boxbox">
+						<input type="text" name="id" id="input2">
+						<button id="confirm">메일보내기</button>
+						<span>버튼을 누르면 이메일로 코드가 전송됩니다.</span>
+						
+						
+						
+						</div>
+						<div class="boxbox">
+						
+						
+						<input type="text" name="id" id="input3">
+						<button id="check">인증하기</button>
+						<span id="data2">인증시 회원가입 버튼이 활성화 됩니다.</span>
+						<br>
+						
+						</div>
+						
 					<div>
-						<button id="btn">id 중복 환인</button>
+						<button id="btn" style="margin-left: 19%;">id 중복 확인</button>
 						<span id="data">영문, 숫자 포함 20자 이하</span>
 					</div>
 					<div class="textbox">
 						<form action="/travel1/MemberInsert2.do" method="post">
-							<table class="tg" style="table-layout: fixed; width: 344px">
+							<table class="tg" style="table-layout: fixed; width: 90%">
 								<colgroup>
 									<col style="width: 67px">
 									<col style="width: 277px">
@@ -214,20 +265,23 @@ body {
 									</tr>
 									<tr>
 										<td class="tg-0lax">생일</td>
-										<td class="tg-0lax"><input type="text" name="birth"></td>
+										<td class="tg-0lax"><input type="text" name="birth" id="bt"></td>
 									</tr>
 									<tr>
 										<td class="tg-0lax">전화번호</td>
 										<td class="tg-0lax"><input type="text" name="tel"></td>
 									</tr>
+
 									<tr>
-										<td class="tg-0lax" colspan="2"><input type="submit"
-											value="회원가입"> <input type="reset" value="취소"></td>
+										<td class="tg-0lax" colspan="2"><input type="submit" id='target_btn'  
+											value="회원가입" disabled='disabled'> <input type="reset" value="취소"></td>
 
 									</tr>
 								</tbody>
 							</table>
 						</form>
+						
+						
 					</div>
 
 				</div>
