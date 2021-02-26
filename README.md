@@ -40,6 +40,10 @@ bootstrap 4.2.1
 
 ajax의 경우 localhost가 아닌 도메인으로 데이터를 주고 받을 때 CORS 문제 발생 (response.setHeader("Access-Control-Allow-Origin", "*"); 코드로 해결가능)
 
+ajax의 경우 jquery가 slim버전인 경우 실행 불가 
+
+javamail의 경우 jdk 1.8 이하에서만 적용되는 문제  (Stack Overflow 에서 해결방법 찾음 javax.activision.jar 받아서 class path 하니 해결함)
+
 이클립스 재설치 3번 했음.
 
 war파일에 자바 파일 못찾아서 고생함(나중에 알고보니 파일 하나하나 컴파일 하는 방법 있었음)
