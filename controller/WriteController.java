@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import travel1.model.travelDAO;
 
 public class WriteController implements Controller{
-	//´ä±Û´Ù´Â ÄÁÆ®·Ñ·¯
+	//ë‹µê¸€ë‹¤ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -21,8 +21,8 @@ public class WriteController implements Controller{
 		String groupod = request.getParameter("groupod");
 
 		
-		System.out.println("Á¦¸ñ : "+title);
-		System.out.println("³»¿ë : "+content);
+		System.out.println("ì œëª© : "+title);
+		System.out.println("ë‚´ìš© : "+content);
 		System.out.println("no : "+groupno);
 		System.out.println("od : "+groupod);
 		
@@ -30,9 +30,9 @@ public class WriteController implements Controller{
 		int cnt = dao.AnswerInsert(title, content, groupno, groupod);
 		
 		if(cnt!=0) {
-			System.out.println("ÀÔ·Â ¼º°ø");
+			System.out.println("ìž…ë ¥ ì„±ê³µ");
 		}else {
-			System.out.println("ÀÔ·Â ½ÇÆÐ");
+			System.out.println("ìž…ë ¥ ì‹¤íŒ¨");
 			
 		}
 		return "Board.do";
