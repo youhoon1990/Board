@@ -24,15 +24,15 @@ public class ContentController implements Controller{
 		
 		System.out.println(num);
 		travelDAO dao = new travelDAO();
-		//Á¶È¸¼ö Áõ°¡½ÃÄÑÁÖ±â
+		//ì¡°íšŒìˆ˜ ì¦ê°€ì‹œì¼œì£¼ê¸°
 				dao.updateClick(num);
 		boardVO vo = dao.ContentList(num);
 		
-		request.setAttribute("vo", vo); // was¿¡ ÀÕ´Â data ÀúÀå
-		int pre = dao.pre(num); //ÀÌÀü °Ô½Ã±Û ¹øÈ£ °¡Áö°í ¿À±â ¸®ÅÏ°ªÀ» int°¡ ¾Æ´Ñ int¹è¿­·Î ÇØ¼­ ´ÙÀ½°ªµµ °¡Áö°í ¿Ã°Í
+		request.setAttribute("vo", vo); // wasì— ì‡ëŠ” data ì €ì¥
+		int pre = dao.pre(num); //ì´ì „ ê²Œì‹œê¸€ ë²ˆí˜¸ ê°€ì§€ê³  ì˜¤ê¸° ë¦¬í„´ê°’ì„ intê°€ ì•„ë‹Œ intë°°ì—´ë¡œ í•´ì„œ ë‹¤ìŒê°’ë„ ê°€ì§€ê³  ì˜¬ê²ƒ
 		
 		request.setAttribute("pre", pre);
-		//´ñ±Û °¡Áö°í ¿À±â
+		//ëŒ“ê¸€ ê°€ì§€ê³  ì˜¤ê¸°
 		ArrayList<CommentVO> vo1 = dao.CommentList(num); 
 		
 		System.out.println(vo1.size());
@@ -43,7 +43,7 @@ public class ContentController implements Controller{
 		 System.out.println(list1);
 
 		 
-		 //admin ÀÇ °æ¿ì ÆÄÀÏ µî·ÏÇÒ ¼ö ÀÖÀ¸´Ï ÆÄÀÏ¸í °¡Áö°í ¿ÀÀÚ
+		 //admin ì˜ ê²½ìš° íŒŒì¼ ë“±ë¡í•  ìˆ˜ ìˆìœ¼ë‹ˆ íŒŒì¼ëª… ê°€ì§€ê³  ì˜¤ì
 		 String fname = dao.getfilename(num);
 		 
 		 request.setAttribute("fname", fname);
