@@ -19,7 +19,7 @@ public class EditController implements Controller{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		//±»ÀÌ ¹è¿­ÀÌ³ª ¸®½ºÆ®¿¡ ´ãÀ» ÇÊ¿ä ¾øÀ½
+		//êµ³ì´ ë°°ì—´ì´ë‚˜ ë¦¬ìŠ¤íŠ¸ì— ë‹´ì„ í•„ìš” ì—†ìŒ
 		request.setAttribute("num", num);
 		request.setAttribute("title", title);
 		request.setAttribute("content", content);
