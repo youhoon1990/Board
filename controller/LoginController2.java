@@ -22,7 +22,7 @@ public class LoginController2 implements Controller{
 		boolean succ = dao.isLogin(id,pass);
 		if(succ) {
 			HttpSession session=request.getSession();
-			
+			// 동일한 브라우져라면 계속 유지됨
 			session.setAttribute("id", id);
 			
 			nextPage = "Board.do";

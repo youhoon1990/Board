@@ -19,22 +19,22 @@ public class BoardListController implements Controller {
 		response.setContentType("text/html; charset=UTF-8");
 
 		int temp = 0;
-		int ten = 1; // 10ìë¦¬ìˆ˜ ì „ë‹¬
-		int num = 0; // í˜„ì¬í˜ì´ì§€ë¡œ ë¦¬ìŠ¤íŠ¸ ë§Œë“¤ê¸° ìœ„í•œ ë³€ìˆ˜
+		int ten = 1; // 10ÀÚ¸®¼ö Àü´Ş
+		int num = 0; // ÇöÀçÆäÀÌÁö·Î ¸®½ºÆ® ¸¸µé±â À§ÇÑ º¯¼ö
 
-// ê²€ìƒ‰ ê¸°ëŠ¥ ì‹œì‘
-		String category = request.getParameter("category"); // ê²€ìƒ‰ì¢…ë¥˜
+// °Ë»ö ±â´É ½ÃÀÛ
+		String category = request.getParameter("category"); // °Ë»öÁ¾·ù
 		String title = "title";
 		String content = "content";
 		String name = "name";
 				
-		String search = request.getParameter("search"); // ê²€ìƒ‰ë‚´ìš©
+		String search = request.getParameter("search"); // °Ë»ö³»¿ë
 		if (category == null) {
 			category = "zero";
 			
 		}else if(category.equals(title)) {
 			category= "title";
-			System.out.println("ì¹´í…Œê³ ë¦¬ ë°”ê¿”ì¤Œ");
+			System.out.println("Ä«Å×°í¸® ¹Ù²ãÁÜ");
 		}else if(category.equals(content)) {
 			category= "content";
 			
@@ -42,10 +42,10 @@ public class BoardListController implements Controller {
 			category= "name";
 			
 		}
-// ê²€ìƒ‰ê¸°ëŠ¥ ì™„ë£Œ
+// °Ë»ö±â´É ¿Ï·á
 		
 		String pnum = request.getParameter("pnum");
-		System.out.println("pnumê°’ = " + pnum);
+		System.out.println("pnum°ª = " + pnum);
 		if (pnum == null) {
 			num = 1;
 			pnum = "1";
@@ -55,41 +55,41 @@ public class BoardListController implements Controller {
 
 		}
 
-		System.out.println("numê°’ = " + num);
+		System.out.println("num°ª = " + num);
 
 		travelDAO dao = new travelDAO();
 		ArrayList<boardVO> vo = new ArrayList<boardVO>();
-//ì¼ë°˜ ê²Œì‹œê¸€ ì¶œë ¥ê³¼ ê²€ìƒ‰ê²°ê³¼ë³„ ì¶œë ¥
+//ÀÏ¹İ °Ô½Ã±Û Ãâ·Â°ú °Ë»ö°á°úº° Ãâ·Â
 		if (category.equals("zero")) {
 			vo = dao.boardList();
-			System.out.println("ì°¸(nullì¼ë•Œ)");
+			System.out.println("Âü(nullÀÏ¶§)");
 
 		} else {
 			vo = dao.searchList(category, search);
-			System.out.println("null ì•„ë‹ë•Œ ê±°ì§“");
+			System.out.println("null ¾Æ´Ò¶§ °ÅÁş");
 		}
 
-		System.out.println("vo ì‚¬ì´ì¦ˆëŠ” " + vo.size());
+		System.out.println("vo »çÀÌÁî´Â " + vo.size());
 
 		ArrayList<boardVO> vo1 = new ArrayList();
 		System.out.println(vo.size());
 		for (int i = (num - 1) * 20; i < (num - 1) * 20 + 20; i++) {
 
 			try {
-				vo1.add(vo.get(i)); // ì´ë ‡ê²Œ í•˜ë©´ ì´ê²Œì‹œê¸€ì´ 21ê°œ ìˆìœ¼ë¯€ë¡œ 2page ë§Œë“¤ë•Œ out of bounds ëœ¸
-				// System.out.println("ë°°ì—´ "+i+"ë²ˆì§¸ ë“¤ì–´ê°”ìŒ");
+				vo1.add(vo.get(i)); // ÀÌ·¸°Ô ÇÏ¸é ÃÑ°Ô½Ã±ÛÀÌ 21°³ ÀÖÀ¸¹Ç·Î 2page ¸¸µé¶§ out of bounds ¶ä
+				// System.out.println("¹è¿­ "+i+"¹øÂ° µé¾î°¬À½");
 
 			} catch (Exception e) {
-				// System.out.println("ë°°ì—´ "+i+"ë²ˆì§¸ë¼ì„œ ìºì¹˜ë¬¸ìœ¼ë¡œì˜´");
+				// System.out.println("¹è¿­ "+i+"¹øÂ°¶ó¼­ Ä³Ä¡¹®À¸·Î¿È");
 				for (i = i; i < vo.size(); i++) {
 					vo1.add(vo.get(i));
-					// System.out.println("ìºì¹˜ë¬¸ì•ˆì—ì„œ ë°°ì—´ì— ë‹´ì•„ì¤Œ");
+					// System.out.println("Ä³Ä¡¹®¾È¿¡¼­ ¹è¿­¿¡ ´ã¾ÆÁÜ");
 				}
 				break;
 			}
 		}
-		request.setAttribute("pnum", num); // í˜„ì¬í˜ì´ì§€
-		System.out.println("pnumì— ë“¤ì–´ê°„ ê°’ = " + num);
+		request.setAttribute("pnum", num); // ÇöÀçÆäÀÌÁö
+		System.out.println("pnum¿¡ µé¾î°£ °ª = " + num);
 		while (num != 0) {
 			num = num / 10;
 			temp++;
@@ -100,14 +100,19 @@ public class BoardListController implements Controller {
 
 		}
 
-		System.out.println("tenì€ = " + ten);
-		System.out.println("tempëŠ” =" + temp);
+		System.out.println("tenÀº = " + ten);
+		System.out.println("temp´Â =" + temp);
 		request.setAttribute("ten", ten);
-		request.setAttribute("cnt", vo.size() / 20 + 1); // ì´ í˜ì´ì§€
-		// request.setAttribute("cnt", vo.size()); //ì´ í˜ì´ì§€
-		// request.setAttribute("vo1", vo); // wasì— ì‡ëŠ” data ì €ì¥
+		request.setAttribute("cnt", vo.size() / 20 + 1); // ÃÑ ÆäÀÌÁö
+		// request.setAttribute("cnt", vo.size()); //ÃÑ ÆäÀÌÁö
+		// request.setAttribute("vo1", vo); // was¿¡ ÀÕ´Â data ÀúÀå
 
 		request.setAttribute("vo", vo1); //
+		
+		String ip = dao.getClientIP(request);
+		
+		
+		
 		return "member/BoardList.jsp";
 	}
 

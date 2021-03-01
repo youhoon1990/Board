@@ -19,17 +19,17 @@ public class SearchController implements Controller{
 		
 		String category = request.getParameter("category");
 		String search = request.getParameter("search");
-		System.out.println(category +" ì¹´í…Œê³ ë¦¬ì™€     ê²€ìƒ‰ì–´     " +search);
+		System.out.println(category +" Ä«Å×°í¸®¿Í     °Ë»ö¾î     " +search);
 		travelDAO dao = new travelDAO();
 		System.out.println("select * from board where "+category+" like "+ search);
 		
 		int temp = 0;
-		int ten =1;  //10ìë¦¬ìˆ˜ ì „ë‹¬
-		int num = 0; //í˜„ì¬í˜ì´ì§€ë¡œ ë¦¬ìŠ¤íŠ¸ ë§Œë“¤ê¸° ìœ„í•œ ë³€ìˆ˜
+		int ten =1;  //10ÀÚ¸®¼ö Àü´Ş
+		int num = 0; //ÇöÀçÆäÀÌÁö·Î ¸®½ºÆ® ¸¸µé±â À§ÇÑ º¯¼ö
 		
 		
 		String pnum =request.getParameter("pnum");
-		System.out.println("pnumê°’ = " + pnum);
+		System.out.println("pnum°ª = " + pnum);
 		if(pnum==null) {
 			num = 1;
 			pnum = "1";	
@@ -40,12 +40,12 @@ public class SearchController implements Controller{
 		}	
 		
 		
-		System.out.println("numê°’ = "+num);
+		System.out.println("num°ª = "+num);
 		ArrayList<boardVO> vo = new ArrayList<boardVO>(); 
 		if(!category.equals("null")) {
 			vo = dao.searchList(category, search);
 		}else {
-			vo = dao.boardList(); //ì „ì²´ ë¦¬ìŠ¤íŠ¸ ê°€ì§€ê³ ì˜´	
+			vo = dao.boardList(); //ÀüÃ¼ ¸®½ºÆ® °¡Áö°í¿È	
 		}
 		
 		
@@ -54,20 +54,20 @@ public class SearchController implements Controller{
 		for(int i=(num-1)*20; i<(num-1)*20+20; i++) {
 			
 			try {
-				vo1.add(vo.get(i)); //ì´ë ‡ê²Œ í•˜ë©´  ì´ê²Œì‹œê¸€ì´ 21ê°œ ìˆìœ¼ë¯€ë¡œ 2page ë§Œë“¤ë•Œ out of bounds ëœ¸
-				//System.out.println("ë°°ì—´ "+i+"ë²ˆì§¸ ë“¤ì–´ê°”ìŒ");
+				vo1.add(vo.get(i)); //ÀÌ·¸°Ô ÇÏ¸é  ÃÑ°Ô½Ã±ÛÀÌ 21°³ ÀÖÀ¸¹Ç·Î 2page ¸¸µé¶§ out of bounds ¶ä
+				//System.out.println("¹è¿­ "+i+"¹øÂ° µé¾î°¬À½");
 				
 			} catch (Exception e) {
-				//System.out.println("ë°°ì—´ "+i+"ë²ˆì§¸ë¼ì„œ ìºì¹˜ë¬¸ìœ¼ë¡œì˜´");
+				//System.out.println("¹è¿­ "+i+"¹øÂ°¶ó¼­ Ä³Ä¡¹®À¸·Î¿È");
 				for(i=i; i<vo.size(); i++) {
 					vo1.add(vo.get(i));
-					//System.out.println("ìºì¹˜ë¬¸ì•ˆì—ì„œ ë°°ì—´ì— ë‹´ì•„ì¤Œ");
+					//System.out.println("Ä³Ä¡¹®¾È¿¡¼­ ¹è¿­¿¡ ´ã¾ÆÁÜ");
 				}
 				break;
 			}
 		}
-		request.setAttribute("pnum", num); //í˜„ì¬í˜ì´ì§€
-		System.out.println("pnumì— ë“¤ì–´ê°„ ê°’ = "+num);
+		request.setAttribute("pnum", num); //ÇöÀçÆäÀÌÁö
+		System.out.println("pnum¿¡ µé¾î°£ °ª = "+num);
 		while(num!=0 ) {
 			num = num/10;
 			temp++;
@@ -78,12 +78,12 @@ public class SearchController implements Controller{
 			
 		}
 				
-		System.out.println("tenì€ = "+ten);
-		System.out.println("tempëŠ” ="+temp);
+		System.out.println("tenÀº = "+ten);
+		System.out.println("temp´Â ="+temp);
 		request.setAttribute("ten", ten);
-		request.setAttribute("cnt", vo.size()/20+1); //ì´ í˜ì´ì§€
-		//request.setAttribute("cnt", vo.size()); //ì´ í˜ì´ì§€
-		//request.setAttribute("vo1", vo); // wasì— ì‡ëŠ” data ì €ì¥ 
+		request.setAttribute("cnt", vo.size()/20+1); //ÃÑ ÆäÀÌÁö
+		//request.setAttribute("cnt", vo.size()); //ÃÑ ÆäÀÌÁö
+		//request.setAttribute("vo1", vo); // was¿¡ ÀÕ´Â data ÀúÀå 
 
 		
 		

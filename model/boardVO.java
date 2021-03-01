@@ -15,6 +15,20 @@ public class boardVO {
 	
 	
 	
+	public boardVO(int num, String title, String name, String day, int click, int rec, String content, int groupno,
+			int groupod, int depth) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.name = name;
+		this.day = day;
+		this.click = click;
+		this.rec = rec;
+		this.content = content;
+		this.groupno = groupno;
+		this.groupod = groupod;
+		this.depth = depth;
+	}
 	public boardVO(int num, String title, String name, String day, int click, int rec, String content) {
 		super();
 		this.num = num;

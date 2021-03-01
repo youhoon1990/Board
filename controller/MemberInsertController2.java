@@ -25,8 +25,8 @@ public class MemberInsertController2 implements Controller{
 		memberVO vo = new memberVO(id, pass, name, birth, tel); 
 		travelDAO dao = new travelDAO();
 		
-		System.out.println(vo.getId()+"voì— ë„£ì–´ì§");
-		System.out.println(vo.getPass()+"voì— ë„£ì–´ì§");
+		System.out.println(vo.getId()+"vo¿¡ ³Ö¾îÁü");
+		System.out.println(vo.getPass()+"vo¿¡ ³Ö¾îÁü");
 		
 		
 		int cnt = dao.memberInsert(vo);
@@ -36,7 +36,7 @@ public class MemberInsertController2 implements Controller{
 		String nextPage = null;
 		if(cnt>0) {
 			nextPage = "Board.do";
-			System.out.println("íšŒì›ê°€ì…ì™„ë£Œ");
+			System.out.println("È¸¿ø°¡ÀÔ¿Ï·á");
 		}else {
 			
 			nextPage = "member/MemberInsert.jsp";
