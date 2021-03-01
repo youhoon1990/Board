@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class downloadAction
  */
 @WebServlet("/downloadAction")
-public class downloadAction extends HttpServlet {
+public class DownloadActionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +47,7 @@ public class downloadAction extends HttpServlet {
 			servletOutputStream.write(b,0, data);
 		}
 		
-		servletOutputStream.flush(); //≥≤æ∆¿÷¥¬ µ•¿Ã≈Õ∏¶ ¿¸∫Œ ∫∏≥ª¡‹
+		servletOutputStream.flush(); //ÎÇ®ÏïÑÏûàÎäî Îç∞Ïù¥ÌÑ∞Î•º Ï†ÑÎ∂Ä Î≥¥ÎÇ¥Ï§å
 		servletOutputStream.close();
 		fileInputStream.close();
 	}
