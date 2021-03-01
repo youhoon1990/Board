@@ -22,7 +22,7 @@ public class LoginController2 implements Controller{
 		boolean succ = dao.isLogin(id,pass);
 		if(succ) {
 			HttpSession session=request.getSession();
-			// µ¿ÀÏÇÑ ºê¶ó¿ìÁ®¶ó¸é °è¼Ó À¯ÁöµÊ
+			// ë™ì¼í•œ ë¸Œë¼ìš°ì ¸ë¼ë©´ ê³„ì† ìœ ì§€ë¨
 			session.setAttribute("id", id);
 			
 			nextPage = "Board.do";
