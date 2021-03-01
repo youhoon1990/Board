@@ -18,12 +18,12 @@ public class CommentController implements Controller{
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html; charset=UTF-8");
-		String reply = request.getParameter("comment"); //´ñ±Û
-		int num = Integer.parseInt(request.getParameter("num"));  //°Ô½Ã±Û¹øÈ£
+		String reply = request.getParameter("comment"); //ëŒ“ê¸€
+		int num = Integer.parseInt(request.getParameter("num"));  //ê²Œì‹œê¸€ë²ˆí˜¸
 		System.out.println(reply);
-		HttpSession session=request.getSession();  //´ñ±Û ÀÛ¼ºÀÚ ¾ÆÀÌµğ
+		HttpSession session=request.getSession();  //ëŒ“ê¸€ ì‘ì„±ì ì•„ì´ë””
 		String name = (String) session.getAttribute("id");
-		System.out.println("¼¼¼Ç ÀúÀåµÈ id´Â  "+name);
+		System.out.println("ì„¸ì…˜ ì €ì¥ëœ idëŠ”  "+name);
 		travelDAO dao = new travelDAO();
 		
 		CommentVO list = new CommentVO(num, reply, name);
@@ -31,13 +31,13 @@ public class CommentController implements Controller{
 		String nextPage = null;
 		if(cnt!=0) {
 			nextPage = "Board.do";
-			System.out.println("´ñ±Û¾²±â ¼º°ø");
+			System.out.println("ëŒ“ê¸€ì“°ê¸° ì„±ê³µ");
 		}else {
 			nextPage = "Board.do";
-			System.out.println("´ñ±Û¾²±â ½ÇÆĞ");
+			System.out.println("ëŒ“ê¸€ì“°ê¸° ì‹¤íŒ¨");
 		}
 		
-		//´ñ±Û °¡Áö°í ¿À±â
+		//ëŒ“ê¸€ ê°€ì§€ê³  ì˜¤ê¸°
 		 
 		
 		
