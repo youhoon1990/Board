@@ -18,7 +18,7 @@ public class AnswerController implements Controller{
 		String groupod = request.getParameter("groupod");
 		
 		System.out.println(num+"      "+ title);
-		System.out.println("groupod¿Í num "+groupod+"¿Í"+groupno);
+		System.out.println("groupodÂ¿Ã num "+groupod+"Â¿Ã"+groupno);
 		request.setAttribute("num", num);
 		request.setAttribute("title", title);
 		request.setAttribute("groupno", groupno);
