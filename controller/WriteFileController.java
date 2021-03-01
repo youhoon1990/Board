@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import travel1.model.travelDAO;
 
 public class WriteFileController implements Controller{
-	//±Û¾²°í ÆÄÀÏ ÀúÀåÇÏ´Â °Í?
+	//ê¸€ì“°ê³  íŒŒì¼ ì €ì¥í•˜ëŠ” ê²ƒ?
 	public String requestHandler(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -21,22 +21,22 @@ public class WriteFileController implements Controller{
 		HttpSession session=request.getSession();
 		String name = (String) session.getAttribute("id");
 		
-		System.out.println("Á¦¸ñ : "+title);
-		System.out.println("³»¿ë : "+content);
+		System.out.println("ì œëª© : "+title);
+		System.out.println("ë‚´ìš© : "+content);
 
 		
 		travelDAO dao = new travelDAO();
 		int cnt = dao.BoardInsert(title, content, name);
 		
 		if(cnt!=0) {
-			System.out.println("ÀÔ·Â ¼º°ø");
+			System.out.println("ì…ë ¥ ì„±ê³µ");
 		}else {
-			System.out.println("ÀÔ·Â ½ÇÆĞ");
+			System.out.println("ì…ë ¥ ì‹¤íŒ¨");
 			
 		}
 		
 		
-		//°øÁö±ÛÀÇ °æ¿ì Ã¼Å©°¡ µÇ¾î¼­ depth  1·Î  (°øÁö¸¸ ÆÄÀÏ¿Ã¸±¼ö ÀÖÀ¸´Ï±î?)
+		//ê³µì§€ê¸€ì˜ ê²½ìš° ì²´í¬ê°€ ë˜ì–´ì„œ depth  1ë¡œ  (ê³µì§€ë§Œ íŒŒì¼ì˜¬ë¦´ìˆ˜ ìˆìœ¼ë‹ˆê¹Œ?)
 		
 		return "Board.do";
 	}
